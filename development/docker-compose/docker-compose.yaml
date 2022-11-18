@@ -1,6 +1,12 @@
 version: '2'
 
 services:
+  proxy:
+    build:
+      context: ./proxy
+    ports:
+      - 81:80
+
   recipe:
     build:
       context: ../../../recipe
@@ -8,8 +14,6 @@ services:
     volumes:
       - ../../../recipe/src:/app/src
     env_file: .env
-    ports:
-      - 4030:4000
 
   ingridient:
     build:
