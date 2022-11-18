@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nutrition
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microrecipe
+      service: nutrition
+  template:
+    metadata:
+      labels:
+        app: microrecipe
+        service: nutrition
+        sidecar.istio.io/inject: "true"
+        version: "1"
+    spec:
+      containers:
+        - name: nutrition
+          image: eristemena/microrecipe_nutrition
+          # resources:
+          #   limits:
+          #     memory: "128Mi"
+          #     cpu: "200m"
+          ports:
+            - name: nutrition
+              protocol: TCP
+              containerPort: 3000
+            - name: grpc
+              protocol: TCP
+              containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: microrecipe-config

@@ -1,0 +1,37 @@
+apiVersion: skaffold/v3
+kind: Config
+manifests:
+  rawYaml:
+    - "../../k8s/*"
+build:
+  artifacts:
+    - image: eristemena/microrecipe_recipe
+      context: ../../../recipe
+      custom:
+        buildCommand: ./custom-build.sh
+      # docker:
+      #   dockerfile: dev.Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "src/**/*.ts"
+    - image: eristemena/microrecipe_ingridient
+      context: ../../../ingridient
+      custom:
+        buildCommand: ./custom-build.sh
+      # docker:
+      #   dockerfile: dev.Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "src/**/*.ts"
+    - image: eristemena/microrecipe_nutrition
+      context: ../../../nutrition
+      custom:
+        buildCommand: ./custom-build.sh
+      # docker:
+      #   dockerfile: dev.Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "src/**/*.ts"

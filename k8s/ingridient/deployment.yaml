@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingridient
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microrecipe
+      service: ingridient
+  template:
+    metadata:
+      labels:
+        app: microrecipe
+        service: ingridient
+        sidecar.istio.io/inject: "true"
+        version: "1"
+    spec:
+      containers:
+        - name: ingridient
+          image: eristemena/microrecipe_ingridient
+          # resources:
+          #   limits:
+          #     memory: "128Mi"
+          #     cpu: "200m"
+          ports:
+            - name: ingridient
+              protocol: TCP
+              containerPort: 3000
+            - name: grpc
+              protocol: TCP
+              containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: microrecipe-config

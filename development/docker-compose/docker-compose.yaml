@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  recipe:
+    build:
+      context: ../../../recipe
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ../../../recipe/src:/app/src
+    env_file: .env
+    ports:
+      - 4030:4000
+
+  ingridient:
+    build:
+      context: ../../../ingridient
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ../../../ingridient/src:/app/src
+    env_file: .env
+
+  nutrition:
+    build:
+      context: ../../../nutrition
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ../../../nutrition/src:/app/src
+    env_file: .env
