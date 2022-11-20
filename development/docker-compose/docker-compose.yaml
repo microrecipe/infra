@@ -7,7 +7,7 @@ services:
     ports:
       - 81:80
 
-  recipe:
+  recipes:
     build:
       context: ../../../recipe
       dockerfile: dev.Dockerfile
@@ -15,7 +15,7 @@ services:
       - ../../../recipe/src:/app/src
     env_file: .env
 
-  ingridient:
+  ingridients:
     build:
       context: ../../../ingridient
       dockerfile: dev.Dockerfile
@@ -23,7 +23,7 @@ services:
       - ../../../ingridient/src:/app/src
     env_file: .env
 
-  nutrition:
+  nutritions:
     build:
       context: ../../../nutrition
       dockerfile: dev.Dockerfile
