@@ -30,6 +30,9 @@ spec:
             - name: grpc
               protocol: TCP
               containerPort: 5000
+            - name: tcp
+              protocol: TCP
+              containerPort: 5001
           envFrom:
             - configMapRef:
                 name: microrecipe-config
