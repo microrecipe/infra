@@ -14,3 +14,5 @@ spec:
       port: 3000
     - name: grpc
       port: 5000
+    - name: tcp-microservice
+      port: 5001
