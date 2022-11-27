@@ -7,6 +7,14 @@ services:
     ports:
       - 81:80
 
+  auth:
+    build:
+      context: ../../../auth
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ../../../auth/src:/app/src
+    env_file: .env
+
   recipes:
     build:
       context: ../../../recipe
