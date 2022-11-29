@@ -8,6 +8,9 @@ services:
       - 81:80
 
   auth:
+    depends_on:
+      - proxy
+      - broker
     build:
       context: ../../../auth
       dockerfile: dev.Dockerfile
@@ -16,6 +19,9 @@ services:
     env_file: .env
 
   recipes:
+    depends_on:
+      - proxy
+      - broker
     build:
       context: ../../../recipe
       dockerfile: dev.Dockerfile
@@ -24,6 +30,9 @@ services:
     env_file: .env
 
   ingridients:
+    depends_on:
+      - proxy
+      - broker
     build:
       context: ../../../ingridient
       dockerfile: dev.Dockerfile
@@ -32,6 +41,9 @@ services:
     env_file: .env
 
   nutritions:
+    depends_on:
+      - proxy
+      - broker
     build:
       context: ../../../nutrition
       dockerfile: dev.Dockerfile
