@@ -51,6 +51,30 @@ services:
       - ../../../nutrition/src:/app/src
     env_file: .env
 
+  orders:
+    build:
+      context: ../../../order
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ../../../order/src:/app/src
+    env_file: .env
+
+  payments:
+    build:
+      context: ../../../payment
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ../../../payment/src:/app/src
+    env_file: .env
+
+  deliveries:
+    build:
+        context: ../../../delivery
+        dockerfile: dev.Dockerfile
+    volumes:
+      - ../../../delivery/src:/app/src
+    env_file: .env
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0
     ports:
