@@ -18,7 +18,7 @@ services:
       - ../../../auth/src:/app/src
     env_file: .env
 
-  recipes:
+  recipe:
     depends_on:
       - proxy
       - broker
@@ -29,18 +29,18 @@ services:
       - ../../../recipe/src:/app/src
     env_file: .env
 
-  ingridients:
+  ingredient:
     depends_on:
       - proxy
       - broker
     build:
-      context: ../../../ingridient
+      context: ../../../ingredient
       dockerfile: dev.Dockerfile
     volumes:
-      - ../../../ingridient/src:/app/src
+      - ../../../ingredient/src:/app/src
     env_file: .env
 
-  nutritions:
+  nutrition:
     depends_on:
       - proxy
       - broker
@@ -51,7 +51,7 @@ services:
       - ../../../nutrition/src:/app/src
     env_file: .env
 
-  orders:
+  order:
     build:
       context: ../../../order
       dockerfile: dev.Dockerfile
@@ -59,7 +59,7 @@ services:
       - ../../../order/src:/app/src
     env_file: .env
 
-  payments:
+  payment:
     build:
       context: ../../../payment
       dockerfile: dev.Dockerfile
@@ -67,7 +67,7 @@ services:
       - ../../../payment/src:/app/src
     env_file: .env
 
-  deliveries:
+  delivery:
     build:
         context: ../../../delivery
         dockerfile: dev.Dockerfile
