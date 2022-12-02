@@ -52,6 +52,9 @@ services:
     env_file: .env
 
   order:
+    depends_on:
+      - proxy
+      - broker
     build:
       context: ../../../order
       dockerfile: dev.Dockerfile
@@ -60,6 +63,9 @@ services:
     env_file: .env
 
   payment:
+    depends_on:
+      - proxy
+      - broker
     build:
       context: ../../../payment
       dockerfile: dev.Dockerfile
@@ -68,6 +74,9 @@ services:
     env_file: .env
 
   delivery:
+    depends_on:
+      - proxy
+      - broker
     build:
         context: ../../../delivery
         dockerfile: dev.Dockerfile
