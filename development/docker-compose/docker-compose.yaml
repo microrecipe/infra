@@ -7,6 +7,17 @@ services:
     ports:
       - 81:80
 
+  frontend:
+    depends_on:
+      - proxy
+    build:
+      context: ../../../frontend
+      dockerfile: dev.Dockerfile
+    command: 'php artisan serve --host=0.0.0.0 --port=80'
+    volumes:
+      - '../../../frontend:/app'
+    env_file: .env
+
   auth:
     depends_on:
       - proxy
@@ -78,8 +89,8 @@ services:
       - proxy
       - broker
     build:
-        context: ../../../delivery
-        dockerfile: dev.Dockerfile
+      context: ../../../delivery
+      dockerfile: dev.Dockerfile
     volumes:
       - ../../../delivery/src:/app/src
     env_file: .env
