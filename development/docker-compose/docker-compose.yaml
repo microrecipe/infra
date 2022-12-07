@@ -18,6 +18,17 @@ services:
       - '../../../frontend:/app'
     env_file: .env
 
+  notification:
+    depends_on:
+      - proxy
+    build:
+      context: ../../../notification
+      dockerfile: dev.Dockerfile
+    command: 'php artisan serve --host=0.0.0.0 --port=80'
+    volumes:
+      - '../../../notification:/app'
+    env_file: .env
+
   auth:
     depends_on:
       - proxy
